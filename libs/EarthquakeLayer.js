@@ -118,15 +118,15 @@ define([
                 console.log("Worker error: " + err.message);
             };
 
-            /////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////////////
             //
             // You can test the performance difference between using a web worker
-            // and not by uncommenting thi section that runs on the main thread
+            // and not using a web worker by uncommenting this section that runs on the main thread
             // and commenting out the worker code above.
-            // It's interesting to see the difference!
-            // I got ~10x performance boost on Chrome by using workers.
             //
-            /////////////////////////////////////////////////////////////////
+            // I'm seeing a ~10x performance boost on Chrome and Firefox by using workers.
+            //
+            ///////////////////////////////////////////////////////////////////////////////////////
             //
             //var graphicsArray = [];
             //var promises = [];

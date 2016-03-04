@@ -22,11 +22,12 @@ onmessage = function(message) {
 function parseFeaturesBackground(features){
 
     var graphicsArray = [];
+    var graphicJson = {};
 
     for(var i = 0; i < features.length; i++){
 
         try {
-            var graphicJson = {
+            graphicJson = {
                 "geometry":{
                     "x":features[i].geometry.coordinates[0],
                     "y":features[i].geometry.coordinates[1],

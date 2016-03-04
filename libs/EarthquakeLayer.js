@@ -106,9 +106,9 @@ define([
                 worker.terminate();
 
                 var graphicsArr = [];
+
                 for(var i = 0; i < result.data.length; i++){
-                    var graphic = new Graphic(result.data[i]);
-                    graphicsArr.push(graphic);
+                    graphicsArr.push(new Graphic(result.data[i]));
                 }
                 console.timeEnd("parseTestTimer");
                 dfd.resolve(graphicsArr);

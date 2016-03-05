@@ -127,7 +127,7 @@ define([
             // I'm seeing a ~10x performance boost on Chrome and Firefox by using workers.
             //
             ///////////////////////////////////////////////////////////////////////////////////////
-            //
+
             //var graphicsArray = [];
             //var promises = [];
             //
@@ -163,7 +163,7 @@ define([
             //}
             //
             //all(promises).then(function(r){
-            //    console.timeEnd("test1");
+            //    console.timeEnd("parseTestTimer");
             //    dfd.resolve(graphicsArray);
             //});
 

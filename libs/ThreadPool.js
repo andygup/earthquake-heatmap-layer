@@ -1,9 +1,9 @@
 /**
  * @author Andy Gup
  *
- * This class manages a ThreadPool for processing larger GeoJSON files
- * The class breaks up the GeoJSON into pieces and processes each piece on its own thread, finally it concatenates
- * all the results back together again.
+ * This class manages a ThreadPool for breaking up larger GeoJSON files
+ * the processing each piece on its own thread and then reconstituting
+ * the results.
  *
  * This class is specifically designed for the following use cases
  * - Processing GeoJSON files
@@ -18,12 +18,12 @@ define([
 ], function(declare, Graphic, Deferred, all) {
 
     return declare(null, {
-        numberOfThreads: 3,
+        _numberOfThreads: 2,
         workerUrl: "libs/EarthquakeWorker.js",
         worker: [],
 
-        constructor: function(){
-
+        constructor: function(threadCount){
+            this._numberOfThreads = threadCount || this._numberOfThreads;
         },
 
         init: function(feature){
@@ -48,7 +48,7 @@ define([
          * @return {Array}
          */
         chunk: function(featureLength){
-            var chunk = Math.ceil( featureLength / this.numberOfThreads), breaks = [];
+            var chunk = Math.ceil( featureLength / this._numberOfThreads), breaks = [];
 
             // 1st attempt at creating breaking points
             for(var i = chunk; i <= featureLength; i += chunk){
@@ -145,7 +145,6 @@ define([
             return dfd;
         },
 
-        // Shutdown all active threads.
         destroy: function(){
             for(var i = 0; i < this.worker.length; i++){
                 this.worker[i].terminate();

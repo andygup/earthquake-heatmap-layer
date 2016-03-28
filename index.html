@@ -14,14 +14,14 @@
     </style>
     <script>
         var dojoConfig = {
-            paths: { buffer: location.pathname.replace(/\/[^/]+$/, "") + "/libs" }
+            paths: { libs: location.pathname.replace(/\/[^/]+$/, "") + "/libs" }
         };
     </script>
     <script src="https://js.arcgis.com/3.15/"></script>
     <script>
         var map;
 
-        require(["esri/map", "buffer/EarthquakeLayer","esri/config","dojo/domReady!"], function(Map,EarthquakeLayer,esriConfig) {
+        require(["esri/map", "libs/EarthquakeLayer","esri/config","dojo/domReady!"], function(Map,EarthquakeLayer,esriConfig) {
             map = new Map("map", {
                 basemap: "topo",
                 center: [-122.45, 37.75], // longitude, latitude
@@ -32,8 +32,8 @@
 
             // Reference: http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
             var earthquakeLayer = new EarthquakeLayer({
-                url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson"
-//                url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
+//                url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson"
+                url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
             });
 
             earthquakeLayer.init().then(function(layer){

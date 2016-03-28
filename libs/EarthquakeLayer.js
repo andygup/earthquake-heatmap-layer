@@ -1,3 +1,6 @@
+/**
+ * Single threaded Earthquake Layer
+ */
 define([
     "dojo/_base/declare",
     "esri/request",
@@ -11,11 +14,11 @@ define([
 
     return declare(null, {
         url: null,
-        layerDefinition: null,
+        _layerDefinition: null,
 
         constructor: function(options){
             this.url = options.url;
-            this.layerDefinition = {
+            this._layerDefinition = {
                 "objectIdField": "id",
                 "geometryType" : "esriGeometryPoint",
                 "fields":[{
@@ -38,9 +41,9 @@ define([
 
             var dfd = new Deferred();
 
-            this.getGeoJSON()
-                .then(this.parseFeatures)
-                .then(this.createFeatureLayer.bind(this))
+            this._getGeoJSON()
+                .then(this._parseFeatures)
+                .then(this._createFeatureLayer.bind(this))
                 .then(function(result){
                     dfd.resolve(result);
                 });
@@ -48,12 +51,12 @@ define([
             return dfd.promise;
         },
 
-        createFeatureLayer: function(graphicsArr){
+        _createFeatureLayer: function(graphicsArr){
 
             var dfd = new Deferred();
 
             var featureCollection = {
-                "layerDefinition": this.layerDefinition,
+                "layerDefinition": this._layerDefinition,
                 "featureSet": {
                     "features": graphicsArr,
                     "geometryType": "esriGeometryPoint"
@@ -87,7 +90,7 @@ define([
          * @param featureArray
          * @return {*}
          */
-        parseFeatures: function(featureArray){
+        _parseFeatures: function(featureArray){
 
             console.time("parseTestTimer");
 
@@ -170,7 +173,7 @@ define([
             return dfd.promise;
         },
 
-        getGeoJSON: function(){
+        _getGeoJSON: function(){
             var geoJSON = esriRequest({
                 "url" : this.url
             });

@@ -1,7 +1,7 @@
 earthquake-heatmap-layer
 ========================
 
-This repo contains a prototype custom layer for displaying real-time USGS earthquake GeoJSON as heatmaps.
+This repo contains a custom layer prototype for displaying real-time USGS earthquake GeoJSON as heatmaps.
 It's intended to demonstrate one approach for improving parsing performance on large GeoJSON.
 
 It's built using the ArcGIS API for JavaScript and contains a custom feature layer.

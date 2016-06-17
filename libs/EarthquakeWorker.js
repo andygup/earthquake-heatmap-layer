@@ -26,25 +26,21 @@ function parseFeaturesBackground(features){
 
     for(var i = 0; i < features.length; i++){
 
-        try {
-            graphicJson = {
-                "geometry":{
-                    "x":features[i].geometry.coordinates[0],
-                    "y":features[i].geometry.coordinates[1],
-                    "spatialReference":{"wkid":4326}
-                },
-                "attributes":{
-                    "id" : features[i].id,
-                    "depth" : features[i].geometry.coordinates[2],
-                    "magnitude" : features[i].properties.mag
-                }
-            };
+        graphicJson = {
+            "geometry":{
+                "x":features[i].geometry.coordinates[0],
+                "y":features[i].geometry.coordinates[1],
+                "spatialReference":{"wkid":4326}
+            },
+            "attributes":{
+                "id" : features[i].id,
+                "depth" : features[i].geometry.coordinates[2],
+                "magnitude" : features[i].properties.mag
+            }
+        };
 
-            graphicsArray.push(graphicJson);
-        }
-        catch(error){
-            console.log("Error creating graphic: " + error);
-        }
+        graphicsArray.push(graphicJson);
+
     }
 
     return graphicsArray;

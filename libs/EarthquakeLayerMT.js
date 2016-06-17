@@ -74,23 +74,18 @@ define([
                 }
             };
 
-            try {
-                var featureLayer = new FeatureLayer(featureCollection);
+            var featureLayer = new FeatureLayer(featureCollection);
 
-                var heatMapRenderer = new HeatmapRenderer({
-                    field: "magnitude",
-                    maxPixelIntensity: 250,
-                    minPixelIntensity: 10,
-                    blurRadius: 10
-                });
+            var heatMapRenderer = new HeatmapRenderer({
+                field: "magnitude",
+                maxPixelIntensity: 250,
+                minPixelIntensity: 10,
+                blurRadius: 10
+            });
 
-                featureLayer.setRenderer(heatMapRenderer);
+            featureLayer.setRenderer(heatMapRenderer);
 
-                dfd.resolve(featureLayer);
-            }
-            catch(err){
-                dfd.resolve(false);
-            }
+            dfd.resolve(featureLayer);
 
             return dfd.promise;
         },

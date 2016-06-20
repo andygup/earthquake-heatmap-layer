@@ -9,7 +9,6 @@ Multi-threaded example of processing GeoJSON.
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
     <title>Simple Map</title>
-    <link rel="stylesheet" href="https://js.arcgis.com/3.16/esri/css/esri.css">
     <style>
         html, body, #map {
             height: 100%;
@@ -18,45 +17,49 @@ Multi-threaded example of processing GeoJSON.
             font-family: Arial;
         }
     </style>
-    <script>
-        var dojoConfig = {
-            paths: { libs: location.pathname.replace(/\/[^/]+$/, "") + "/libs" }
-        };
-    </script>
-    <script src="https://js.arcgis.com/3.16/"></script>
-    <script>
-        var map;
-
-        require(["esri/map", "libs/EarthquakeLayerMT","esri/config","dojo/domReady!"], function(Map,EarthquakeLayer,esriConfig) {
-            map = new Map("map", {
-                basemap: "topo",
-                center: [-122.45, 37.75], // longitude, latitude
-                zoom: 3
-            });
-
-            esriConfig.defaults.io.corsEnabledServers.push("earthquake.usgs.gov");
-
-            // Wait until update-end event as a way to lazy load and reduce CPU usage while the app is loading
-            var updateHandler = map.on("update-end",function(){
-
-                updateHandler.remove();
-
-                // Reference: http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
-                var earthquakeLayer = new EarthquakeLayer({
-                    url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
-                    threads: 2     // 2 is default. Not required if using default
-                });
-
-                earthquakeLayer.init().then(function(layer){
-                    map.addLayer(layer);
-                });
-            });
-        });
-    </script>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.16/esri/css/esri.css">
 </head>
 
 <body>
 <div>&nbsp;&nbsp; Multi-Threaded Example</div>
 <div id="map"></div>
+
+<script>
+    var dojoConfig = {
+        paths: { libs: location.pathname.replace(/\/[^/]+$/, "") + "/libs" }
+    };
+</script>
+<script src="https://js.arcgis.com/3.16/"></script>
+<script>
+    var map;
+
+    require(["esri/map", "libs/EarthquakeLayerMT","esri/config","dojo/domReady!"], function(Map,EarthquakeLayer,esriConfig) {
+        map = new Map("map", {
+            basemap: "topo",
+            center: [-122.45, 37.75], // longitude, latitude
+            zoom: 3
+        });
+
+        esriConfig.defaults.io.corsEnabledServers.push("earthquake.usgs.gov");
+
+        // Wait until update-end event as a way to lazy load and reduce CPU usage while the app is loading
+        var updateHandler = map.on("update-end",drawMap);
+
+        function drawMap(){
+            updateHandler.remove();
+
+            // Reference: http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
+            var earthquakeLayer = new EarthquakeLayer({
+                url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
+                threads: 2     // 2 is default. Not required if using default
+            });
+
+            earthquakeLayer.init().then(function(layer){
+                map.addLayer(layer);
+            });
+        }
+    });
+</script>
+
 </body>
 </html>

@@ -8,9 +8,13 @@ It's built using the ArcGIS API for JavaScript and contains a custom feature lay
 
 ## Samples
 
-`index.html` - single threaded example that's fairly straight forward in its implementation.
+Open up your developer console and then run each of these samples:
 
-`index_mt.html` - multi-threaded, advanced sample that can split up a large GeoJSON file into separate threads.
+[No threads](http://andygup.github.io/earthquake-heatmap-layer/) - an example that uses no threads.
+
+[Single threaded](http://andygup.github.io/earthquake-heatmap-layer/) - single threaded example that's fairly straight forward in its implementation.
+
+[Two threads](http://andygup.github.io/earthquake-heatmap-layer/index_mt.html) - multi-threaded, advanced sample that can split up a large GeoJSON file into separate threads.
 
 ## Example Usage
 

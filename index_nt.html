@@ -1,0 +1,57 @@
+<!--
+
+Single threaded example of processing GeoJSON
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Simple Map</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.16/esri/css/esri.css">
+    <style>
+        html, body, #map {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial;
+        }
+    </style>
+</head>
+
+<body>
+<div>&nbsp;&nbsp; No Threads Example</div>
+<div id="map"></div>
+
+<script>
+    var dojoConfig = {
+        paths: { libs: location.pathname.replace(/\/[^/]+$/, "") + "/libs" }
+    };
+</script>
+<script src="https://js.arcgis.com/3.16/"></script>
+<script>
+    var map;
+
+    require(["esri/map", "libs/EarthquakeLayerNT","esri/config","dojo/domReady!"], function(Map,EarthquakeLayer,esriConfig) {
+        map = new Map("map", {
+            basemap: "topo",
+            center: [-122.45, 37.75], // longitude, latitude
+            zoom: 3
+        });
+
+        esriConfig.defaults.io.corsEnabledServers.push("earthquake.usgs.gov");
+
+        // Reference: http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
+        var earthquakeLayer = new EarthquakeLayer({
+            url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
+        });
+
+        earthquakeLayer.init().then(function(layer){
+            map.addLayer(layer);
+        });
+    });
+</script>
+
+</body>
+</html>

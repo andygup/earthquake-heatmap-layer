@@ -115,56 +115,7 @@ define([
             worker.onerror = function(err){
                 console.log("Worker error: " + err.message);
             };
-
-            ///////////////////////////////////////////////////////////////////////////////////////
-            //
-            // You can test the performance difference between using a web worker
-            // and not using a web worker by uncommenting this section that runs on the main thread
-            // and commenting out the worker code above.
-            //
-            // I'm seeing a ~10x performance boost on Chrome and Firefox by using workers.
-            //
-            ///////////////////////////////////////////////////////////////////////////////////////
-
-            //var graphicsArray = [];
-            //var promises = [];
-            //
-            //var features = featureArray.features;
-            //
-            //for(var i = 0; i < features.length; i++){
-            //
-            //    var deferred = new Deferred();
-            //
-            //    try {
-            //        var point = new Point(
-            //            features[i].geometry.coordinates[0],
-            //            features[i].geometry.coordinates[1]);
-            //        var graphic = new Graphic(point);
-            //        graphic.attributes = {
-            //            "id" : features[i].id,
-            //            "depth" : features[i].geometry.coordinates[2],
-            //            "magnitude" : features[i].properties.mag
-            //        };
-            //
-            //
-            //        //console.log("JSON baby: " + JSON.stringify(graphic.toJson()));
-            //
-            //        graphicsArray.push(graphic);
-            //        deferred.resolve(true);
-            //    }
-            //    catch(error){
-            //        console.log("Error creating graphic: " + error);
-            //        deferred.resolve(false);
-            //    }
-            //
-            //    promises.push(deferred);
-            //}
-            //
-            //all(promises).then(function(r){
-            //    console.timeEnd("parseTestTimer");
-            //    dfd.resolve(graphicsArray);
-            //});
-
+            
             return dfd.promise;
         },
 

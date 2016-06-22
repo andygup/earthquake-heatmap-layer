@@ -10,7 +10,7 @@ It's built using the ArcGIS API for JavaScript and contains a custom feature lay
 
 Open up your developer console and then run each of these samples:
 
-[No threads](http://andygup.github.io/earthquake-heatmap-layer/) - an example that uses no threads.
+[No threads](http://andygup.github.io/earthquake-heatmap-layer/index_nt.html) - an example that uses no threads.
 
 [Single threaded](http://andygup.github.io/earthquake-heatmap-layer/) - single threaded example that's fairly straight forward in its implementation.
 

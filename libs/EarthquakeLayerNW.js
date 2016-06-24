@@ -63,7 +63,7 @@ define([
                 }
             };
 
-            var featureLayer = new FeatureLayer(featureCollection);
+            var featureLayer = new FeatureLayer(featureCollection, {displayOnPan:false});
 
             var heatMapRenderer = new HeatmapRenderer({
                 field: "magnitude",

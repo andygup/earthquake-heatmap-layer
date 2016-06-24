@@ -1,5 +1,5 @@
 /**
- * Single threaded Earthquake Layer
+ * Single worker Earthquake Layer
  */
 define([
     "dojo/_base/declare",

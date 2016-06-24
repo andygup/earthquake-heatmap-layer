@@ -1,6 +1,6 @@
 <!--
 
-Multi-threaded example of processing GeoJSON.
+Two or more worker example of processing GeoJSON.
 
 -->
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ Multi-threaded example of processing GeoJSON.
 <script>
     var map;
 
-    require(["esri/map", "libs/EarthquakeLayerMT","esri/config","dojo/domReady!"], function(Map,EarthquakeLayer,esriConfig) {
+    require(["esri/map", "libs/EarthquakeLayerMW","esri/config","dojo/domReady!"], function(Map, EarthquakeLayer, esriConfig) {
         map = new Map("map", {
             basemap: "topo",
             center: [-122.45, 37.75], // longitude, latitude

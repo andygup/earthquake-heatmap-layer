@@ -10,11 +10,11 @@ It's built using the ArcGIS API for JavaScript and contains a custom feature lay
 
 Open up your developer console and then run each of these samples:
 
-[No threads](http://andygup.github.io/earthquake-heatmap-layer/index_nt.html) - an example that uses no threads.
+[No web workers - all on main thread](http://andygup.github.io/earthquake-heatmap-layer/no_worker.html)
 
-[Single threaded](http://andygup.github.io/earthquake-heatmap-layer/) - single threaded example that's fairly straight forward in its implementation.
+[One web worker](http://andygup.github.io/earthquake-heatmap-layer/one_worker.html)
 
-[Two threads](http://andygup.github.io/earthquake-heatmap-layer/index_mt.html) - multi-threaded, advanced sample that can split up a large GeoJSON file into separate threads.
+[Two web workers](http://andygup.github.io/earthquake-heatmap-layer/two_worker.html)
 
 ## Example Usage
 
@@ -36,8 +36,9 @@ For a fully working sample see the index.html file in this repo. The basic patte
 And, you implement in your code like this:   
 
    ```js
-   
-       require(["esri/map", "libs/EarthquakeLayer","esri/config","dojo/domReady!"], function(Map,EarthquakeLayer,esriConfig) {
+       
+       // EarthquakeLayerSW uses a single web worker
+       require(["esri/map", "libs/EarthquakeLayerSW","esri/config","dojo/domReady!"], function(Map,EarthquakeLayer,esriConfig) {
            map = new Map("map", {
                basemap: "topo",
                center: [-122.45, 37.75], // longitude, latitude
@@ -67,4 +68,4 @@ The internal approach to multi-threading following this pattern:
 - Break up large GeoJSON file into pieces based on number of threads. One chunk per thread.
 - Push each chunk to a thread asynchronously
 - Do processing on the thread and return individual results
-- When all threads have completed concatenate all results and return single Esri JSON Object. 
+- Concatenate all results and return single Esri JSON Object. 

@@ -1,5 +1,5 @@
 /**
- * Earthquake Layer - NOT threaded
+ * No worker Earthquake Layer
  */
 define([
     "dojo/_base/declare",

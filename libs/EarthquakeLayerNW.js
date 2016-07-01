@@ -111,9 +111,6 @@ define([
                        "magnitude" : features[i].properties.mag
                    };
 
-
-                   //console.log("JSON baby: " + JSON.stringify(graphic.toJson()));
-
                    graphicsArray.push(graphic);
                    deferred.resolve(true);
                }

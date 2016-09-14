@@ -90,46 +90,6 @@ define([
             return dfd.promise;
         },
 
-        /**
-         * Convert GeoJson to esri Json. Then we
-         * convert that into an array of Graphics
-         * @param featureArray
-         * @return {*}
-         */
-        _parseFeatures: function(featureArray){
-
-            console.time("parseTestTimer");
-
-            var dfd = new Deferred();
-
-            var worker = new Worker("libs/EarthquakeWorker.js");
-
-            worker.postMessage(
-                {
-                    cmd: "parse",
-                    features: featureArray.features
-                }
-            );
-
-            worker.onmessage = function(result){
-                worker.terminate();
-
-                var graphicsArr = [];
-                for(var i = 0; i < result.data.length; i++){
-                    var graphic = new Graphic(result.data[i]);
-                    graphicsArr.push(graphic);
-                }
-                console.timeEnd("parseTestTimer");
-                dfd.resolve(graphicsArr);
-            };
-
-            worker.onerror = function(err){
-                console.log("Worker error: " + err.message);
-            };
-
-            return dfd.promise;
-        },
-
         _getGeoJSON: function(){
             var geoJSON = esriRequest({
                 "url" : this.url

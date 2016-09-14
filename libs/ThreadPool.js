@@ -77,12 +77,19 @@ define([
                 promises[0] = this.create(0, feature);
             }
             else if(chunkArray.length > 1) {
-                for(var i = 1; i < chunkArray.length + 1; i++){
+                for(var i = 0; i < chunkArray.length; i++){
                     // Grab the features associated with this chunk
-                    subFeature = feature.slice(chunkArray[i - 1], chunkArray[i]);
+                    // subFeature = feature.slice(chunkArray[i - 1], chunkArray[i]);
+
+                    if(i === 0){
+                        subFeature = feature.slice(0, chunkArray[0]);
+                    }
+                    else if(chunkArray[i] === feature.length){
+                        subFeature = feature.slice(chunkArray[i - 1] + 1, chunkArray[i]);
+                    }
 
                     // Spawn worker threads for each chunk of subfeatures
-                    promises[i - 1] = this.create(i - 1, subFeature);
+                    promises[i - 1] = this.create(i, subFeature);
                 }
             }
 

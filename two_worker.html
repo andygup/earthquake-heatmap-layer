@@ -20,7 +20,7 @@ Two or more worker example of processing GeoJSON.
             padding: 16px;
         }
     </style>
-    <link rel="stylesheet" href="https://js.arcgis.com/3.17/esri/css/esri.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
 </head>
 
 <body>
@@ -32,7 +32,7 @@ Two or more worker example of processing GeoJSON.
         paths: { libs: location.pathname.replace(/\/[^/]+$/, "") + "/libs" }
     };
 </script>
-<script src="https://js.arcgis.com/3.17/"></script>
+<script src="https://js.arcgis.com/3.20/"></script>
 <script>
     var map;
 
@@ -53,7 +53,7 @@ Two or more worker example of processing GeoJSON.
 
             // Reference: http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
             var earthquakeLayer = new EarthquakeLayer({
-                url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
+                url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
                 threads: 2     // 2 is default. Not required if using default
             });
 

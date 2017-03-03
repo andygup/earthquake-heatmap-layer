@@ -22,7 +22,7 @@ For a fully working sample see the index.html file in this repo. The basic patte
 
    ```js
    
-              // Reference: http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
+              // Reference: https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
               var earthquakeLayer = new EarthquakeLayer({
                   url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
               });
@@ -49,7 +49,7 @@ And, you implement in your code like this:
 
            // Reference: http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
            var earthquakeLayer = new EarthquakeLayer({
-               url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
+               url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
            });
 
            earthquakeLayer.init().then(function(layer){

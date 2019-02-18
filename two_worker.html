@@ -20,7 +20,7 @@ Two or more worker example of processing GeoJSON.
             padding: 16px;
         }
     </style>
-    <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.27/esri/css/esri.css">
 </head>
 
 <body>
@@ -32,11 +32,11 @@ Two or more worker example of processing GeoJSON.
         paths: { libs: location.pathname.replace(/\/[^/]+$/, "") + "/libs" }
     };
 </script>
-<script src="https://js.arcgis.com/3.20/"></script>
+<script src="https://js.arcgis.com/3.27/"></script>
 <script>
     var map;
 
-    require(["esri/map", "libs/EarthquakeLayerMW","esri/config","dojo/domReady!"], function(Map, EarthquakeLayer, esriConfig) {
+    require(["esri/map", "libs/EarthquakeLayerMW","esri/config"], function(Map, EarthquakeLayer, esriConfig) {
         map = new Map("map", {
             basemap: "topo",
             center: [-122.45, 37.75], // longitude, latitude

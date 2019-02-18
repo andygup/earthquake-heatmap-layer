@@ -38,7 +38,7 @@ And, you implement in your code like this:
    ```js
        
        // EarthquakeLayerSW uses a single web worker
-       require(["esri/map", "libs/EarthquakeLayerSW","esri/config","dojo/domReady!"], function(Map,EarthquakeLayer,esriConfig) {
+       require(["esri/map", "libs/EarthquakeLayerSW","esri/config"], function(Map,EarthquakeLayer,esriConfig) {
            map = new Map("map", {
                basemap: "topo",
                center: [-122.45, 37.75], // longitude, latitude
